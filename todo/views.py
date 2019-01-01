@@ -20,14 +20,14 @@ class TaskListCreate(APIView):
         search_term = self.request.query_params.get('q', None)
         tasks = list_tasks(search_term=search_term, user=self.request.user)
         ser = TaskSchema()
-        return Response(ser.dump(tasks, many=True))
+        return Response(ser.dump(tasks, many=True).data)
 
     def post(self, request, *args, **kwargs):
         ser = TaskSchema()
         results = ser.load(request.data)
         if results.errors:
             return Response(results.errors, status=status.HTTP_400_BAD_REQUEST)
-        task = add_task(user=self.request.user, **ser.data)
+        task = add_task(user=self.request.user, **results.data)
         return Response(ser.dump(task).data, status=status.HTTP_201_CREATED)
 
 
@@ -39,7 +39,7 @@ class TaskRetrieveUpdateDestroy(APIView):
 
     def get(self, request, *args, **kwargs):
         task = get_task(task_id=self.get_task_id())
-        ser = TaskSchema(task)
+        ser = TaskSchema()
         return Response(ser.dump(task).data)
 
     def post(self, request, *args, **kwargs):
@@ -47,7 +47,7 @@ class TaskRetrieveUpdateDestroy(APIView):
         results = ser.load(request.data)
         if results.errors:
             return Response(results.errors, status=status.HTTP_400_BAD_REQUEST)
-        task = edit_task(task_id=self.get_task_id(), **ser.data)
+        task = edit_task(task_id=self.get_task_id(), **results.data)
         return Response(ser.dump(task).data)
 
     def delete(self, request, *args, **kwargs):

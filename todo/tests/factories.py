@@ -4,7 +4,7 @@ from todo.models import Task
 from users.tests.factories import UserFactory
 
 
-class UserFactory(factory.django.DjangoModelFactory):
+class TaskFactory(factory.django.DjangoModelFactory):
     user = factory.SubFactory(UserFactory)
     description = FuzzyText()
 
