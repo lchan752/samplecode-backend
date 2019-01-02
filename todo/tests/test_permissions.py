@@ -1,5 +1,9 @@
 from unittest.mock import create_autospec
-from todo.views import TaskRetrieveUpdateDestroy
+from rest_framework.permissions import IsAuthenticated
+from todo.views import (
+    TaskRetrieveUpdateDestroy,
+    TaskListCreate,
+)
 from todo.permissions import IsStaffOrTaskOwner
 from users.tests.factories import UserFactory
 from todo.tests.factories import TaskFactory
@@ -40,3 +44,9 @@ def test_is_staff_or_task_owner_permission_for_non_task_owner(db, rf):
     perm = IsStaffOrTaskOwner()
     assert not perm.has_permission(request, mock_view(user1_task.id))
     assert not perm.has_permission(request, mock_view(user2_task.id))
+
+
+def test_view_permissions():
+    assert IsStaffOrTaskOwner in TaskRetrieveUpdateDestroy.permission_classes
+    assert IsAuthenticated in TaskRetrieveUpdateDestroy.permission_classes
+    assert IsAuthenticated in TaskListCreate.permission_classes
