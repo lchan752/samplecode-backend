@@ -5,5 +5,8 @@ pytest-django==3.4.4
 marshmallow==2.16.3
 psycopg2==2.7.6.1
 factory_boy==2.11.1
+Sphinx==1.8.3
+sphinx-autobuild==0.7.1
+sphinxcontrib-plantuml==0.14
 ipython
 ipdb
