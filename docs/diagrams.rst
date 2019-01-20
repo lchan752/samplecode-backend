@@ -23,30 +23,6 @@ Activity Diagrams
    stop
    @enduml
 
----------------
-Object Diagrams
----------------
-
-.. uml::
-
-   @startuml
-   left to right direction
-
-   object user {
-     name = "Dummy"
-     id = 123
-   }
-
-   object address {
-     flat = "10A"
-     street = "Sesame Street"
-     city = "New York"
-   }
-
-   user -- address: 1-to-Many
-
-   @enduml
-
 ----------------
 Usecase Diagrams
 ----------------
@@ -64,6 +40,38 @@ Usecase Diagrams
      (help) .> (checkout) : extends
      (checkout) -- clerk
    }
+   @enduml
+
+----------------
+Database Diagram
+----------------
+
+.. uml::
+
+   @startuml
+   left to right direction
+   class User {
+     id: int
+     name: string
+   }
+
+   class Address {
+     id: int
+     user_id: int
+     line1: string
+     line2: string
+     city: string
+   }
+
+   class Phone {
+     id: int
+     user_id: int
+     phone_number: string
+     phone_type: string
+   }
+
+   User::id <-- Address::user_id : 1 to many
+   User::id <-- Phone::user_id : 1 to many
    @enduml
 
 .. _PlantUML: http://plantuml.com/

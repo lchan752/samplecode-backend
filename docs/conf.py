@@ -42,6 +42,8 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.graphviz',
     'sphinxcontrib.plantuml',
+    'sphinxcontrib.openapi',
+    'sphinxcontrib.redoc',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -177,3 +179,10 @@ epub_exclude_files = ['search.html']
 
 
 # -- Extension configuration -------------------------------------------------
+
+redoc = [{
+    'name': 'Batcomputer API',
+    'page': 'api',
+    'spec': 'apispec.json',
+    'embed': True,
+}]

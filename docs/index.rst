@@ -6,10 +6,11 @@
 Welcome to todolist's documentation!
 ====================================
 
-Example of using Sphinx for project's documentation
+Example of using Sphinx for project's documentation.
+Testing Updates
 
 ..  toctree::
-    :glob:
-    :hidden:
 
-    *
+    install
+    diagrams
+    api
