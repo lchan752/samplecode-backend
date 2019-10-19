@@ -1,13 +1,12 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build',
+         '-t', 'gcr.io/$PROJECT_ID/backend',
          '-t', 'gcr.io/$PROJECT_ID/backend:build-$BUILD_ID',
          '-t', 'gcr.io/$PROJECT_ID/backend:commit-$SHORT_SHA',
          '-t', 'gcr.io/$PROJECT_ID/backend:branch-$BRANCH_NAME',
          '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push',
-         'gcr.io/$PROJECT_ID/backend:build-$BUILD_ID',
-         'gcr.io/$PROJECT_ID/backend:commit-$SHORT_SHA',
-         'gcr.io/$PROJECT_ID/backend:branch-$BRANCH_NAME']
+  args: ['push', 'gcr.io/$PROJECT_ID/backend']
 tags: ['backend']
+images: ['gcr.io/$PROJECT_ID/backend']
