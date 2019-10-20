@@ -3,9 +3,7 @@ steps:
   args: ['build',
          '-t', 'gcr.io/$PROJECT_ID/backend',
          '-t', 'gcr.io/$PROJECT_ID/backend:build-$BUILD_ID',
-         '-t', 'gcr.io/$PROJECT_ID/backend:commit-$SHORT_SHA',
-         '-t', 'gcr.io/$PROJECT_ID/backend:branch-$BRANCH_NAME',
-         '-t', 'gcr.io/$PROJECT_ID/backend:unstable',
+         '-t', 'gcr.io/$PROJECT_ID/backend:$BRANCH_NAME-$SHORT_SHA',
          '.']
 # TODO: run tests, then tag build as stable
 #- name: 'gcr.io/cloud-builders/docker'
