@@ -11,5 +11,6 @@ sphinxcontrib-plantuml==0.17.1
 sphinxcontrib-openapi==0.5.0
 sphinxcontrib-redoc==1.5.1
 apispec==0.39.0
+django-environ==0.4.5
 ipython
 ipdb
