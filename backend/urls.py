@@ -25,4 +25,5 @@ urlpatterns = [
     path('todo/', include('todo.urls')),
     path('jwt-auth/', obtain_jwt_token, name='jwt-auth'),
     path('jwt-refresh/', refresh_jwt_token, name='jwt-refresh'),
+    path('watchman/', include('watchman.urls')),
 ]
