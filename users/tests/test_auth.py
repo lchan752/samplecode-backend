@@ -15,6 +15,11 @@ class JWTAuthTestCase(TestCase):
         resp = self.client.post(url, data=credentials, content_type='application/json')
         assert resp.status_code == status.HTTP_200_OK, resp.data
         assert resp.data['token'], resp.data
+        token = resp.data['token']
+        payload = jwt_decode_handler(token)
+        assert payload['first_name'] == self.user.first_name
+        assert payload['last_name'] == self.user.last_name
+        assert payload['is_staff'] == self.user.is_staff
 
     def test_login_failed(self):
         url = reverse('jwt-auth')
@@ -45,9 +50,3 @@ class JWTAuthTestCase(TestCase):
         credentials = {'email': self.user.email, 'password': 'password'}
         resp = self.client.post(url, data=credentials, content_type='application/json')
         assert resp.status_code == status.HTTP_200_OK, resp.data
-        token = resp.data['token']
-        payload = jwt_decode_handler(token)
-        assert payload['first_name'] == self.user.first_name
-        assert payload['last_name'] == self.user.last_name
-        assert payload['email'] == self.user.email
-        assert payload['is_staff'] == self.user.is_staff
