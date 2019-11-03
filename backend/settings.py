@@ -128,8 +128,8 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
     'JWT_AUTH_HEADER_PREFIX': 'Bearer',
-    'JWT_EXPIRATION_DELTA': timedelta(minutes=3),
-    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(minutes=30),
+    'JWT_EXPIRATION_DELTA': timedelta(minutes=30),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=3),
     'JWT_PAYLOAD_HANDLER': 'backend.helpers.jwt_payload_handler',
 }
 
